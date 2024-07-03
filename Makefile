@@ -7,3 +7,8 @@ LD := ${LD-${UNAME}}
 
 htmlsh: htmlsh.c
 	${LD} -o $@ htmlsh.c ${LDFLAGS} ${LDLIBS} ${CFLAGS}
+
+list:
+	@echo ./htmlsh
+
+.PHONY: list
