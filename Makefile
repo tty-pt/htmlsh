@@ -1,3 +1,5 @@
+DESTDIR ?= ../../
+PREFIX ?= usr
 LDFLAGS := -L/usr/lib -L/usr/local/lib
 CFLAGS := -I/usr/include -I/usr/local/include
 UNAME != uname
@@ -8,7 +10,12 @@ LD := ${LD-${UNAME}}
 htmlsh: htmlsh.c
 	${LD} -o $@ htmlsh.c ${LDFLAGS} ${LDLIBS} ${CFLAGS}
 
-list:
-	@echo ./htmlsh
+install: ${DESTDIR}${PREFIX}/bin/htmlsh
 
-.PHONY: list
+${DESTDIR}${PREFIX}/bin/htmlsh: htmlsh
+	install -m 755 htmlsh $@
+
+list:
+	@echo ${PREFIX}/bin/htmlsh
+
+.PHONY: list install
