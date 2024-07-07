@@ -12,10 +12,11 @@ htmlsh: htmlsh.c
 
 install: ${DESTDIR}${PREFIX}/bin/htmlsh
 
-${DESTDIR}${PREFIX}/bin/htmlsh: htmlsh
+$(DESTDIR)$(PREFIX)/bin/htmlsh: htmlsh
 	install -m 755 htmlsh $@
+	${INSTALL_DEP} ${@:${DESTDIR}%=%}
 
-list:
-	@echo ${PREFIX}/bin/htmlsh
+clean:
+	rm htmlsh || true
 
-.PHONY: list install
+.PHONY: install clean
